@@ -1,0 +1,12 @@
+tensorflow
+numpy
+pandas
+matplotlib
+scikit-learn 
+uvicorn
+Pillow
+seaborn
+fastapi
+setuptools
+typing
+chainlit==1.1.404

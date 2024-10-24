@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  fastapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"  # Expose FastAPI only for internal use
+    volumes:
+      - ./MP_Detection_ML.h5:/app/MP_Detection_ML.h5
+    environment:
+      - FASTAPI_URL=http://fastapi:8000 
+
+  chainlit:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8501:8501" 
+    depends_on:
+      - fastapi
+    volumes:
+      - ./MP_Detection_ML.h5:/app/MP_Detection_ML.h5
+    environment:
+      - FASTAPI_URL=http://fastapi:8000 
